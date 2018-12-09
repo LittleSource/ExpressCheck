@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+   		<title>百G卡快递查询-源梦科技提供技术支持</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<!--必要样式-->
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+		<!--[if IE]>
+		<script src="js/html5.js"></script>
+		<![endif]-->
+</head>
+<body>
+		<div class="container demo-1">
+			<div class="content">
+				<div id="large-header" class="large-header">
+					<h2 style="text-align: center;color: #FFFFFF;margin-top:30px">百G卡快递查询</h2>
+					<canvas id="demo-canvas"></canvas>
+					<div class="logo_box" style="top: 60%">
+						<form name="f" autocomplete="off">
+							<div class="input_outer">
+								<span class="u_user"></span>
+								<input id="name1" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入姓名">
+							</div>
+							<div class="mb2">
+							<button type="button" id="search" style="width:100%;margin:auto;color: #FFFFFF">
+                            	<span class="act-but submit"> 查询</span>
+                        	</button>
+							</div>
+						</form>
+						</br></br></br></br></br>
+						<div style="text-align: center;color: #EDEDED;">
+            			©Powered by<a href="http://www.9ykm.cn" target="_blank" style="color: #EDEDED"> 源梦科技</a>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="kdpage"></div>
+		<!-- /container -->
+        <script>
+            $(function(){
+                $('#search').click(function(){
+                    var username = $('#name1').val();
+                    var regName =/^[\u4e00-\u9fa5]{2,4}$/;
+                    if(!regName.test(username)){
+                    	layer.alert('姓名输入有误！');
+                    }
+                    else {
+                        $.post('list.php', {name: username}, function (data) {
+                            $('#kdpage').html(data);
+                        })
+                    }
+                })
+            })
+        </script>
+		<script src="js/TweenLite.min.js"></script>
+		<script src="js/EasePack.min.js"></script>
+		<script src="js/rAF.js"></script>
+		<script src="js/demo-1.js"></script>
+	</body>
+</html>
